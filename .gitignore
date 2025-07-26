@@ -1,0 +1,27 @@
+node_modules/
+.venv/
+venv/
+ENV/
+.vscode/
+
+# MacOS / Windows OS files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Editor temporary files
+*.swp
+*~
+
+# TypeScript cache/output
+*.tsbuildinfo
+
+# Build output
+dist/
+build/
+
+# Jupyter checkpoints & metadata
+.ipynb_checkpoints/
