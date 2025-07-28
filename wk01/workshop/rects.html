@@ -1,0 +1,682 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Mocha Tests for Tutorial 2</title>
+        <link href="./libs/mocha.css" rel="stylesheet" />
+    </head>
+    <style>
+        #ResultDiv {
+            font-family: sans-serif;
+        }
+        #SolutionText {
+            text-align: center;
+            color: blue;
+        }
+    </style>
+    <body>
+        <h1>Workshop 1 Activity</h1>
+        <svg
+            id="svgCanvas"
+            width="602px"
+            height="340px"
+            viewBox="101 234 500 250"
+        >
+            <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+                <rect
+                    style="
+                        fill: #e7780020;
+                        fill-rule: evenodd;
+                        stroke: #e77800;
+                        stroke-width: 1.31527078;
+                        stroke-linecap: butt;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 4;
+                        stroke-dasharray: 1.31527077, 1.31527077;
+                        stroke-dashoffset: 0;
+                        stroke-opacity: 1;
+                    "
+                    id="boundingRect"
+                    width="292.50958"
+                    height="145.2218"
+                    x="191.16148"
+                    y="281.10446"
+                />
+                <rect
+                    id="SvgjsRect1055"
+                    width="21.249125"
+                    height="25.005709"
+                    x="478.08984"
+                    y="391.89536"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1056"
+                    width="20.439442"
+                    height="18.685099"
+                    x="101.17829"
+                    y="272.55103"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1057"
+                    width="22.772093"
+                    height="20.212543"
+                    x="490.1622"
+                    y="334.9263"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1058"
+                    width="25.726116"
+                    height="25.821108"
+                    x="255.80579"
+                    y="297.78305"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1059"
+                    width="24.425436"
+                    height="26.036942"
+                    x="305.56393"
+                    y="395.21091"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1060"
+                    width="21.561684"
+                    height="16.902929"
+                    x="244.15979"
+                    y="271.51392"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1061"
+                    width="20.970541"
+                    height="26.220818"
+                    x="230.35168"
+                    y="354.85721"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1062"
+                    width="23.125771"
+                    height="17.978769"
+                    x="121.02215"
+                    y="370.89264"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1063"
+                    width="26.240818"
+                    height="16.521538"
+                    x="337.53568"
+                    y="295.91342"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1064"
+                    width="16.400124"
+                    height="25.650286"
+                    x="208.69006"
+                    y="308.30304"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1065"
+                    width="20.675528"
+                    height="25.97076"
+                    x="352.207"
+                    y="348.69638"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1066"
+                    width="25.639738"
+                    height="23.08917"
+                    x="460.29968"
+                    y="283.76056"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1067"
+                    width="16.476337"
+                    height="26.094831"
+                    x="530.83209"
+                    y="412.42419"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1068"
+                    width="21.85317"
+                    height="20.067917"
+                    x="337.38"
+                    y="312.43497"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1069"
+                    width="22.934687"
+                    height="24.780262"
+                    x="348.78687"
+                    y="241.32985"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1070"
+                    width="26.344135"
+                    height="24.619022"
+                    x="303.62717"
+                    y="279.59308"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1071"
+                    width="22.508488"
+                    height="17.387486"
+                    x="198.43663"
+                    y="284.68872"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1072"
+                    width="18.601786"
+                    height="17.238214"
+                    x="372.88251"
+                    y="354.18631"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1073"
+                    width="18.598257"
+                    height="15.922132"
+                    x="125.72894"
+                    y="422.90091"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1074"
+                    width="25.513229"
+                    height="22.726406"
+                    x="133.20624"
+                    y="266.41678"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1075"
+                    width="18.321898"
+                    height="15.963293"
+                    x="225.09018"
+                    y="322.37692"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1076"
+                    width="25.125776"
+                    height="20.89933"
+                    x="294.26529"
+                    y="258.69376"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1077"
+                    width="19.575026"
+                    height="17.725069"
+                    x="433.49622"
+                    y="422.17877"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1078"
+                    width="21.038767"
+                    height="23.851706"
+                    x="141.84369"
+                    y="341.30722"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1079"
+                    width="17.484396"
+                    height="25.545643"
+                    x="349.46246"
+                    y="374.66711"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1080"
+                    width="19.58098"
+                    height="19.977461"
+                    x="324.57739"
+                    y="369.92215"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1081"
+                    width="20.686344"
+                    height="22.729416"
+                    x="266.67307"
+                    y="272.14322"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1082"
+                    width="19.864115"
+                    height="16.278414"
+                    x="476.24506"
+                    y="355.13882"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1083"
+                    width="23.206221"
+                    height="24.247791"
+                    x="138.43295"
+                    y="390.6152"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1084"
+                    width="20.11862"
+                    height="16.696579"
+                    x="527.8255"
+                    y="332.3187"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1085"
+                    width="25.882013"
+                    height="26.092039"
+                    x="371.72156"
+                    y="251.96419"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1086"
+                    width="24.677763"
+                    height="17.757088"
+                    x="435.05121"
+                    y="342.24756"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1087"
+                    width="24.035429"
+                    height="19.904705"
+                    x="495.37881"
+                    y="312.77948"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1088"
+                    width="22.571625"
+                    height="20.916555"
+                    x="272.96088"
+                    y="332.17606"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1089"
+                    width="18.18952"
+                    height="21.601297"
+                    x="161.63918"
+                    y="398.16611"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1090"
+                    width="26.160923"
+                    height="18.200943"
+                    x="359.23318"
+                    y="314.21039"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1091"
+                    width="15.921251"
+                    height="24.466639"
+                    x="314.00803"
+                    y="234.22711"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1092"
+                    width="16.516062"
+                    height="26.390966"
+                    x="459.72897"
+                    y="341.15414"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1093"
+                    width="18.411558"
+                    height="18.162397"
+                    x="532.04108"
+                    y="286.1669"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1094"
+                    width="23.433054"
+                    height="20.478098"
+                    x="466.05978"
+                    y="371.41724"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1095"
+                    width="24.742735"
+                    height="23.442743"
+                    x="205.60895"
+                    y="359.61752"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1096"
+                    width="26.163763"
+                    height="18.539249"
+                    x="298.4136"
+                    y="367.12219"
+                    style="
+                        fill: #d1d1e8;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+                <rect
+                    id="SvgjsRect1097"
+                    width="20.656038"
+                    height="19.627956"
+                    x="420.67325"
+                    y="247.89098"
+                    style="
+                        fill: #8c8ce4;
+                        fill-opacity: 1;
+                        stroke: #191715;
+                        stroke-width: 0.26458332;
+                        stroke-opacity: 1;
+                    "
+                />
+            </g>
+        </svg>
+        <p>
+            Imagine the image above is the canvas of a little diagram editor.
+            The user has selected a region shown with the dotted orange outline.
+            They then invoke a UI feature which zooms the selected objects to
+            fit neatly into the canvas window. We are going to implement this
+            functionality - or at least the code that implements the
+            computation.
+        </p>
+        <p>
+            You will need to implement four functions in the main.js file:
+            <code>overlappingIntervals</code>,
+            <code>rectanglesOverlappingBoundary</code>,
+            <code>sumAreasOverlappingBoundary</code> and
+            <code>computeBounds</code>.
+        </p>
+        <p id="finePrint">
+            (OK, we don't actually need to sum the areas, but it's more practice
+            with
+            <code>reduce</code>.)
+        </p>
+        <h2>Tests</h2>
+        <div id="mocha"></div>
+
+        <script src="./libs/mocha.js"></script>
+        <script src="./libs/chai.js"></script>
+        <script src="./libs/sinon.js"></script>
+        <script>
+            mocha.setup("bdd");
+            let expect = chai.expect;
+        </script>
+        <script src="./libs/helper.js"></script>
+        <script src="rects.js"></script>
+        <script src="./test/rects.test.js"></script>
+    </body>
+</html>
