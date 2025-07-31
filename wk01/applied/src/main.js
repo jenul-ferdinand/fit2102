@@ -21,6 +21,8 @@ const IMPLEMENT_THIS = undefined;
  * Then create another un-reassignable variable called secondConst
  *  and initialise its value to firstConst + 1.
  */
+const firstConst = 1;
+const secondConst = firstConst + 1;
 
 /*****************************************************************
  * Exercise 2:
@@ -34,6 +36,19 @@ const IMPLEMENT_THIS = undefined;
  *  - anonymousFunction: using an anonymous function declared with the "function" keyword
  *  - arrowFunction: using an arrow function
  */
+function aFunction() {
+    const foo = 2;
+    return foo * 2;
+}
+const anonymousFunction = function() {
+    const foo = 2;
+    return foo * 2;
+};
+const arrowFunction = () => {
+    const foo = 2;
+    return foo * 2;
+}
+
 
 /*****************************************************************
  * Exercise 3:
@@ -53,7 +68,9 @@ const IMPLEMENT_THIS = undefined;
  * @param x Number to check
  * @returns True if x is divisible by three or five, false otherwise
  */
-const isDivisibleByThreeOrFive = IMPLEMENT_THIS;
+const isDivisibleByThreeOrFive = (x) => {
+    return x % 3 == 0 || x % 5 == 0;
+};
 
 /**
  * Sum up to a specified number, ignoring values.
@@ -65,7 +82,15 @@ const isDivisibleByThreeOrFive = IMPLEMENT_THIS;
  * @returns the sum
  */
 const selectiveSummer = f => n => {
-    const summer_aux = IMPLEMENT_THIS;
+    let total = 0;
+
+    const summer_aux = (n) => {
+        if (n == 0) return total
+
+        f(n) ? total += n : null
+
+        return summer_aux(n-1)
+    };
 
     return summer_aux(n);
 };
@@ -78,12 +103,18 @@ const selectiveSummer = f => n => {
  * @param n Target number
  * @returns The sum of numbers up to but not including n that are divisible by three or five
  */
-const filteredSum = n => IMPLEMENT_THIS;
+const filteredSum = n => {
+    return selectiveSummer(isDivisibleByThreeOrFive)(n-1)
+};
 
 /**
  * @returns Answer to project euler problem 1
+ * 
+ * "If we list all the natural numbers below 10 that are multiples of 3 or 5,
+ *   we get 3, 5, 6 and 9. The sum of these multiples is 23.
+ *   Find the sum of all the multiples of 3 or 5 below 1000."
  */
-const projectEulerProblem1 = () => IMPLEMENT_THIS(1000);
+const projectEulerProblem1 = () => filteredSum(1000);
 
 /*****************************************************************
  * Exercise 4:
@@ -99,7 +130,7 @@ const projectEulerProblem1 = () => IMPLEMENT_THIS(1000);
  *
  * @param arr Array to print
  */
-const printArray = IMPLEMENT_THIS;
+const printArray = (arr) => console.log(arr);
 
 /**
  * Create a new array with each item incremented by one (1)
@@ -107,7 +138,7 @@ const printArray = IMPLEMENT_THIS;
  * @param arr Array to increment
  * @returns New array with incremented items
  */
-const addOne = IMPLEMENT_THIS;
+const addOne = (arr) => arr.map(x => x + 1);
 
 /**
  * Create a new array with ones removed
@@ -115,7 +146,7 @@ const addOne = IMPLEMENT_THIS;
  * @param arr Input array
  * @returns Array without ones
  */
-const removeOnes = IMPLEMENT_THIS;
+const removeOnes = (arr) => arr.filter(x => x !== 1);
 
 /**
  * Calculate the sum of the items in an array
@@ -123,7 +154,7 @@ const removeOnes = IMPLEMENT_THIS;
  * @param arr Input array
  * @returns Sum of items in arr
  */
-const sumArray = IMPLEMENT_THIS;
+const sumArray = (arr) => arr.reduce((acc, val) => acc + val, 0);
 
 /*****************************************************************
  * Exercise 5:
@@ -132,54 +163,72 @@ const sumArray = IMPLEMENT_THIS;
  * see: https://tgdwyer.github.io/javascript1/#arrays
  */
 
-const multiplyArray = (n, array) => {
-    let newArray = [];
-    for (let i = 0; i < array.length; i++) {
-        newArray.push(array[i] * n);
-    }
-    return newArray;
-};
+// const multiplyArray = (n, array) => {
+//     let newArray = [];
+//     for (let i = 0; i < array.length; i++) {
+//         newArray.push(array[i] * n);
+//     }
+//     return newArray;
+// };
+const multiplyArray = (n, array) => array.map(x => x * n);
 
-const filterEvenNumbers = array => {
-    let newArray = [];
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] % 2 === 0) {
-            newArray.push(array[i]);
-        }
-    }
-    return newArray;
-};
+// const filterEvenNumbers = array => {
+//     let newArray = [];
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] % 2 === 0) {
+//             newArray.push(array[i]);
+//         }
+//     }
+//     return newArray;
+// };
+const filterEvenNumbers = (array) => array.filter(x => x % 2 === 0);
 
 // Do *not* use Math.max
+// const findMax = array => {
+//     let max = array[0];
+//     for (let i = 1; i < array.length; i++) {
+//         if (array[i] > max) {
+//             max = array[i];
+//         }
+//     }
+//     return max;
+// };
 const findMax = array => {
-    let max = array[0];
-    for (let i = 1; i < array.length; i++) {
-        if (array[i] > max) {
-            max = array[i];
-        }
-    }
-    return max;
+    let currMax = array[0];
+    return array.reduce((_, curr) => {
+        return currMax = curr > currMax ? curr : currMax;
+    }, currMax);
 };
 
+// const tripleAndFilterOdds = array => {
+//     let newArray = [];
+//     for (let i = 0; i < array.length; i++) {
+//         let tripled = array[i] * 3;
+//         if (tripled % 2 !== 0) {
+//             newArray.push(tripled);
+//         }
+//     }
+//     return newArray;
+// };
 const tripleAndFilterOdds = array => {
-    let newArray = [];
-    for (let i = 0; i < array.length; i++) {
-        let tripled = array[i] * 3;
-        if (tripled % 2 !== 0) {
-            newArray.push(tripled);
-        }
-    }
-    return newArray;
+    return array
+        .filter(x => x % 2 != 0)
+        .map(x => x * 3)
 };
 
+// const countOddNumbers = array => {
+//     let count = 0;
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] % 2 !== 0) {
+//             count++;
+//         }
+//     }
+//     return count;
+// };
 const countOddNumbers = array => {
-    let count = 0;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] % 2 !== 0) {
-            count++;
-        }
-    }
-    return count;
+    return array
+        .filter(x => x % 2 !== 0)
+        .length
 };
 
 /*****************************************************************
@@ -196,12 +245,25 @@ const countOddNumbers = array => {
  * @param n Target value
  * @returns Array of integers in the range [0, n)
  */
-const range = IMPLEMENT_THIS;
+const range = (n) => {
+    return Array.from(
+        { length: n },
+        (_, i) => i
+    )
+};
 
 /**
  * @returns Answer to project euler problem 1
+ * 
+ * "If we list all the natural numbers below 10 that are multiples of 3 or 5,
+ *   we get 3, 5, 6 and 9. The sum of these multiples is 23.
+ *   Find the sum of all the multiples of 3 or 5 below 1000."
  */
-const projectEulerProblem1Again = () => IMPLEMENT_THIS;
+const projectEulerProblem1Again = (n = 1000) => {
+    return nums = range(n)
+        .filter(x => x % 3 === 0 || x % 5 === 0)
+        .reduce((acc, val) => acc + val, 0)
+};
 
 /*****************************************************************
  * Exercise 7:
@@ -225,7 +287,7 @@ const projectEulerProblem1Again = () => IMPLEMENT_THIS;
  * @returns Cons list, function in closure
  */
 function cons(head, rest = null) {
-    return selector => IMPLEMENT_THIS;
+    return selector => selector(head, rest);
 }
 
 /**
@@ -237,7 +299,7 @@ function cons(head, rest = null) {
 function head(list) {
     if (!list) throw new TypeError("list is null");
 
-    return list(IMPLEMENT_THIS);
+    return list((head, rest) => head);
 }
 
 /**
@@ -249,7 +311,7 @@ function head(list) {
 function rest(list) {
     if (!list) throw new TypeError("list is null");
 
-    return list(IMPLEMENT_THIS);
+    return list((head, rest) => rest);
 }
 
 /*****************************************************************
@@ -279,19 +341,26 @@ function forEach(f, list) {
 
 /**
  * Map for cons list
+ * 
+ * Using recursion to apply the function to the head and the rest of the 
+ * conslist.
+ * 
+ * map(x => { let h = x * 2 ; console.log(h) ; return h}, cons(1, cons(2, cons(3)))) 
  *
  * @param f Function to apply
  * @param list Cons list to map
  * @returns New cons list with f applied to elements
  */
 function map(f, list) {
-    if (!list) return null;
+    if (!list) return [];
 
-    return IMPLEMENT_THIS;
+    const _head = f(head(list))
+    const _rest = map(f, rest(list))
+    return cons(_head, _rest)
 }
 
 /**
- * Reduce for cons list
+ * TODO: Reduce for cons list
  *
  * @param {(acc, val) => any} f Reducing function, this combines the accumulator with the current value. Note that the accumulator value is the first parameter, and the current value is the second parameter.
  * @param acc Accumulated value, initial value
@@ -301,11 +370,14 @@ function map(f, list) {
 function reduce(f, acc, list) {
     if (!list) return acc;
 
-    return IMPLEMENT_THIS;
+    return forEach((acc, val) => {
+        const _head = f(val)
+        const _rest = reduce(acc, list)
+    }, list);
 }
 
 /**
- * Filter for cons list
+ * TODO: Filter for cons list
  *
  * @param f Function to accept or reject values
  * @param list Cons list to filter
