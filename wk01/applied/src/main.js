@@ -352,15 +352,15 @@ function forEach(f, list) {
  * @returns New cons list with f applied to elements
  */
 function map(f, list) {
-    if (!list) return [];
+    if (!list) return null;
 
-    const _head = f(head(list))
-    const _rest = map(f, rest(list))
-    return cons(_head, _rest)
+    const _head = f(head(list));
+    const _rest = map(f, rest(list));
+    return cons(_head, _rest);
 }
 
 /**
- * TODO: Reduce for cons list
+ * Reduce for cons list
  *
  * @param {(acc, val) => any} f Reducing function, this combines the accumulator with the current value. Note that the accumulator value is the first parameter, and the current value is the second parameter.
  * @param acc Accumulated value, initial value
@@ -370,14 +370,11 @@ function map(f, list) {
 function reduce(f, acc, list) {
     if (!list) return acc;
 
-    return forEach((acc, val) => {
-        const _head = f(val)
-        const _rest = reduce(acc, list)
-    }, list);
+    return reduce(f, f(acc, head(list)), rest(list));
 }
 
 /**
- * TODO: Filter for cons list
+ * Filter for cons list
  *
  * @param f Function to accept or reject values
  * @param list Cons list to filter
@@ -387,7 +384,7 @@ function filter(f, list) {
     if (!list) return null;
 
     // Skip value
-    if (!f(head(list))) return IMPLEMENT_THIS;
-
-    return IMPLEMENT_THIS;
+    if (!f(head(list))) return filter(f, rest(list));
+    // Include current element in result and continue with rest
+    return cons(head(list), filter(f, rest(list)));
 }
