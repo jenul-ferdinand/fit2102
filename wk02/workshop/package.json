@@ -1,0 +1,25 @@
+{
+    "name": "workshop2",
+    "type": "module",
+    "private": true,
+    "license": "MIT",
+    "main": "index.js",
+    "scripts": {
+        "test": "vitest",
+        "test:ui": "vitest --ui",
+        "test:run": "vitest run",
+        "dev": "vite --host",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@vitest/ui": "^3.2.4",
+        "typescript": "~5.8.3",
+        "vite": "^7.0.6",
+        "vite-plugin-checker": "^0.10.1",
+        "vitest": "^3.2.4"
+    },
+    "stackblitz": {
+        "startCommand": "npm run test:ui"
+    }
+}
