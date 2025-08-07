@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Week 2 Exercises</title>
+
+        <!--load this first to set the theme to avoid white-dark flicker-->
+        <script type="module" src="./tests/preload.ts"></script>
+
+        <style>
+            div.output {
+                background-color: #ddd;
+                font-family: "Courier New", Courier, monospace;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                padding-left: 1.5em;
+                padding-right: 1.5em;
+                border-radius: 5px;
+                width: fit-content;
+            }
+            pre {
+                color: #555;
+            }
+        </style>
+
+        <link href="node_modules/mocha/mocha.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./src/style.css" />
+    </head>
+
+    <body>
+        <div class="sliderWrapper">
+            <div>
+                <p>Dark Mode&nbsp;&nbsp;</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="light_vs_dark_toggle" />
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <main>
+            <div class="description">
+                <h1>Week 2 - Types, Recursion, and Pretty Printing</h1>
+                <p>
+                    Please make sure your <code>npm</code> installation is
+                    working correctly. Refer to the <code>README</code> file for
+                    instructions on how to do this.
+                </p>
+                <p>
+                    If you run <code>npm run dev</code> and it doesn't work
+                    <strong>tell your tutor as soon as possible</strong>.
+                </p>
+                <p>Your code <strong>must</strong> compile without errors.</p>
+
+                <h2 class="heading">Exercise 1 - Creating read only objects</h2>
+                <div class="tests" id="exercise_1_suite"></div>
+
+                <h2 class="heading">Exercise 2 - Animated Rectangle</h2>
+                <svg width="390" height="60" id="svg">
+                    <rect
+                        id="redRectangle"
+                        x="10"
+                        y="5"
+                        width="20"
+                        height="20"
+                        fill="red"
+                    />
+                </svg>
+
+                <h2 class="heading">Exercise 3 - Binary Tree</h2>
+                <div class="tests" id="exercise_3_suite"></div>
+
+                <h2 class="heading">Exercise 4 - Nary Tree</h2>
+                <div class="tests" id="exercise_4_suite"></div>
+
+                <h2 class="heading">Exercise 5 - Maybes</h2>
+                <div class="tests" id="exercise_5_suite"></div>
+            </div>
+        </main>
+
+        <div id="mocha" class="test"></div>
+        <script type="module" src="./src/main.ts"></script>
+        <script type="module" src="./tests/main.test.ts"></script>
+        <script type="module" src="./tests/index.ts"></script>
+    </body>
+</html>
