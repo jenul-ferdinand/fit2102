@@ -82,15 +82,10 @@ const isDivisibleByThreeOrFive = (x) => {
  * @returns the sum
  */
 const selectiveSummer = f => n => {
-    let total = 0;
-
-    const summer_aux = (n) => {
-        if (n == 0) return total
-
-        f(n) ? total += n : null
-
-        return summer_aux(n-1)
-    };
+    const summer_aux = (n) => { 
+        if (n === 0) return 0
+        return f(n) ? n + summer_aux(n-1) : summer_aux(n-1)
+    }
 
     return summer_aux(n);
 };
@@ -103,9 +98,7 @@ const selectiveSummer = f => n => {
  * @param n Target number
  * @returns The sum of numbers up to but not including n that are divisible by three or five
  */
-const filteredSum = n => {
-    return selectiveSummer(isDivisibleByThreeOrFive)(n-1)
-};
+const filteredSum = n => selectiveSummer(isDivisibleByThreeOrFive)(n-1)
 
 /**
  * @returns Answer to project euler problem 1
@@ -194,10 +187,8 @@ const filterEvenNumbers = (array) => array.filter(x => x % 2 === 0);
 //     return max;
 // };
 const findMax = array => {
-    let currMax = array[0];
-    return array.reduce((_, curr) => {
-        return currMax = curr > currMax ? curr : currMax;
-    }, currMax);
+    if (array.length === 0) return undefined
+    return array.reduce((acc, val) => val > acc ? val : acc, array[0])
 };
 
 // const tripleAndFilterOdds = array => {
@@ -210,11 +201,10 @@ const findMax = array => {
 //     }
 //     return newArray;
 // };
-const tripleAndFilterOdds = array => {
-    return array
+const tripleAndFilterOdds = array =>
+    array
         .filter(x => x % 2 != 0)
         .map(x => x * 3)
-};
 
 // const countOddNumbers = array => {
 //     let count = 0;
@@ -225,11 +215,10 @@ const tripleAndFilterOdds = array => {
 //     }
 //     return count;
 // };
-const countOddNumbers = array => {
-    return array
+const countOddNumbers = array =>
+    array   
         .filter(x => x % 2 !== 0)
         .length
-};
 
 /*****************************************************************
  * Exercise 6:
@@ -245,12 +234,13 @@ const countOddNumbers = array => {
  * @param n Target value
  * @returns Array of integers in the range [0, n)
  */
-const range = (n) => {
-    return Array.from(
-        { length: n },
-        (_, i) => i
-    )
-};
+// const range = (n) => {
+//     return Array.from(
+//         { length: n },
+//         (_, i) => i
+//     )
+// };
+const range = (n) => Array(n).fill().map((_, i) => i)
 
 /**
  * @returns Answer to project euler problem 1
@@ -259,11 +249,11 @@ const range = (n) => {
  *   we get 3, 5, 6 and 9. The sum of these multiples is 23.
  *   Find the sum of all the multiples of 3 or 5 below 1000."
  */
-const projectEulerProblem1Again = (n = 1000) => {
-    return nums = range(n)
+const projectEulerProblem1Again = (n = 1000) =>
+    range(n)
         .filter(x => x % 3 === 0 || x % 5 === 0)
         .reduce((acc, val) => acc + val, 0)
-};
+
 
 /*****************************************************************
  * Exercise 7:
