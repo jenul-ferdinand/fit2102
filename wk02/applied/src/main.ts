@@ -36,7 +36,7 @@ const IMPLEMENT_THIS: any = undefined;
 type IMPLEMENT_THIS = any;
 
 /*****************************************************************
- * Exercise 1
+ * & Exercise 1
  *
  * Create an object called anObject with the property "x" set to 5.
  *
@@ -50,12 +50,17 @@ type IMPLEMENT_THIS = any;
  * see: https://tgdwyer.github.io/typescript1/#using-the-compiler-to-ensure-immutability
  */
 
-const anObject = IMPLEMENT_THIS;
+const anObject: object = Object.freeze({
+    x: 5
+});
 
-const anotherObject = IMPLEMENT_THIS;
+const anotherObject: object = Object.freeze({
+    ...anObject,
+    y: 10
+});
 
 /*****************************************************************
- * Exercise 2
+ * & Exercise 2
  *
  * Part 1:
  * Write the types for the following code, which was introduced in https://tgdwyer.github.io/html/
@@ -69,11 +74,13 @@ const anotherObject = IMPLEMENT_THIS;
 
 // Define an animation function
 function animate(
-    rect: IMPLEMENT_THIS,
-    startX: IMPLEMENT_THIS,
-    finalX: IMPLEMENT_THIS,
-    duration: IMPLEMENT_THIS,
+    rect: HTMLElement | null,
+    startX: number,
+    finalX: number,
+    duration: number,
 ) {
+    if (!rect) return;
+
     const startTime = performance.now();
     function nextFrame() {
         // Calculate elapsed time
@@ -84,7 +91,9 @@ function animate(
         if (elapsedTime >= duration) {
             // Set the final position of the rectangle.
             // We can use `setAttribute` to modify the HTML Element. In this case, we are changing the x attribute.
-            rect.setAttribute("x", finalX);
+            const finalXStr = finalX.toString()
+            if (rect) 
+                rect.setAttribute("x", finalXStr);
             return; // Stop the animation
         }
 
@@ -92,7 +101,9 @@ function animate(
         const x = startX + ((finalX - startX) * elapsedTime) / duration;
 
         // Set the intermediate position of the rectangle.
-        rect.setAttribute("x", x);
+        const xStr = x.toString();
+        if (rect) 
+            rect.setAttribute("x", xStr);
 
         // Call the nextFrame function again after a delay of 1000/60 milliseconds
         setTimeout(nextFrame, 1000 / 60); // 60 FPS
@@ -100,12 +111,14 @@ function animate(
     nextFrame();
 }
 
-const rectangle = document.getElementById("redRectangle");
-const duration = 5000; // 5 seconds in milliseconds
-animate(rectangle, 0, 370, duration);
+const redRectangle: HTMLElement | null = document.getElementById("redRectangle");
+const blueRectangle: HTMLElement | null = document.getElementById("blueRectangle");
+const duration: number = 5000; // 5 seconds in milliseconds
+animate(redRectangle, 0, 370, duration);
+animate(blueRectangle, 370, 0, duration);
 
 /*****************************************************************
- * Exercise 3
+ * & Exercise 3
  *
  * We will now look at defining recursive types with generics. This is
  * very useful in creating our own custom data types and data structures.
@@ -123,13 +136,13 @@ animate(rectangle, 0, 370, duration);
  */
 
 type BinaryTree<T> = Readonly<{
-    data: IMPLEMENT_THIS;
-    left?: IMPLEMENT_THIS;
-    right?: IMPLEMENT_THIS;
+    data: T;
+    left?: BinaryTree<T>;
+    right?: BinaryTree<T>;
 }>;
 
 /**
- * Creates a binary tree node
+ * * Creates a binary tree node
  *
  * /Hint/: Remember to declare the generic type!
  *
@@ -141,13 +154,15 @@ type BinaryTree<T> = Readonly<{
  * @param right Right child
  * @returns Binary tree node
  */
-const binaryTree = (
-    data: IMPLEMENT_THIS,
-    left?: IMPLEMENT_THIS,
-    right?: IMPLEMENT_THIS,
-): BinaryTree<IMPLEMENT_THIS> => {
-    return IMPLEMENT_THIS;
-};
+const binaryTree = <T>(
+    data: T,
+    left?: BinaryTree<any>,
+    right?: BinaryTree<any>
+): BinaryTree<T> => ({
+    data,
+    left,
+    right
+})
 
 const binaryTreeExample = binaryTree(
     1,
@@ -156,18 +171,25 @@ const binaryTreeExample = binaryTree(
 );
 
 /**
- * Computes the maximum depth (height) of a binary tree.
+ * * Computes the maximum depth (height) of a binary tree.
  *
  * @param tree - The binary tree to measure
  * @returns A number representing the longest path from root to leaf (including root)
  *
  */
-const depthBinaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
-    return IMPLEMENT_THIS;
+const depthBinaryTree = <T>(tree: BinaryTree<T>): number => {
+    if (!tree) return -1
+    if (!tree.left && !tree.right) return 1
+
+    // Recursively find the depth for the children
+    const lHeight = tree.left ? depthBinaryTree(tree.left) : 0
+    const rHeight = tree.right ? depthBinaryTree(tree.right) : 0
+
+    return Math.max(lHeight, rHeight) + 1;
 };
 
 /**
- * Applies a function to each value in a binary tree, returning a new tree with the same shape.
+ * * Applies a function to each value in a binary tree, returning a new tree with the same shape.
  *
  * @param tree - The binary tree to map over
  * @param fn - A function to apply to each node's data
@@ -175,12 +197,16 @@ const depthBinaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
  *
  */
 const mapBinaryTree = <T, U>(
-    tree: IMPLEMENT_THIS,
-    fn: IMPLEMENT_THIS,
-): IMPLEMENT_THIS => IMPLEMENT_THIS;
+    tree: BinaryTree<T>,
+    fn: (value: T) => U,
+): BinaryTree<U> => ({
+   data: fn(tree.data),
+   left: tree.left ? mapBinaryTree(tree.left, fn) : undefined,
+   right: tree.right ? mapBinaryTree(tree.right, fn) : undefined
+});
 
 /*****************************************************************
- * Exercise 4 — N-ary Trees with Generics
+ * & Exercise 4 — N-ary Trees with Generics
  *
  * An n-ary tree is a recursive data structure where each node contains:
  * - a single value (`data`)
@@ -194,8 +220,8 @@ const mapBinaryTree = <T, U>(
  *****************************************************************/
 
 type NaryTree<T> = Readonly<{
-    data: IMPLEMENT_THIS;
-    children: IMPLEMENT_THIS;
+    data: T;
+    children: NaryTree<T>[];
 }>;
 
 /**
@@ -206,9 +232,13 @@ type NaryTree<T> = Readonly<{
  * @returns A new immutable NaryTree<T> node
  *
  */
-const naryTree = <T>(data: IMPLEMENT_THIS, children: IMPLEMENT_THIS = []) => {
-    return IMPLEMENT_THIS;
-};
+const naryTree = <T>(
+    data: T, 
+    children: NaryTree<T>[] = []
+): NaryTree<T> => ({
+    data,
+    children
+});
 
 const naryTreeExample = naryTree(1, [
     naryTree(2),
@@ -225,8 +255,15 @@ const naryTreeExample = naryTree(1, [
  * @returns The maximum depth of the tree
  *
  */
-const depthNaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
-    return IMPLEMENT_THIS;
+const depthNaryTree = <T>(tree: NaryTree<T>): number => {
+    // Base case: no children => depth 1
+    if (tree.children.length === 0) return 1
+
+    // Get depths of all children
+    const childDepths = tree.children.map(child => depthNaryTree(child));
+
+    // Depth is this node (1) plus the maximum child depth
+    return 1 + Math.max(...childDepths)
 };
 
 /**
@@ -238,9 +275,15 @@ const depthNaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
  *
  */
 const mapNaryTree = <T, U>(
-    tree: IMPLEMENT_THIS,
-    fn: IMPLEMENT_THIS,
-): IMPLEMENT_THIS => IMPLEMENT_THIS;
+    tree: NaryTree<T>,
+    fn: (value: T) => U,
+): NaryTree<U> => {
+    const mappedChildren = tree.children.map(child => mapNaryTree(child, fn))
+    return {
+        data: fn(tree.data),
+        children: mappedChildren
+    }
+}
 
 /*****************************************************************
  * Exercise 5 — Maybe Types
@@ -251,7 +294,7 @@ const mapNaryTree = <T, U>(
  * Represents an optional value: either a value of type `T` (`Just<T>`) or the absence of a value (`Nothing`).
  */
 type Nothing = undefined;
-type Maybe<T> = { Just: T } | Nothing;
+type Maybe<T> = { Just: T } | Nothing;h;
 
 /**
  * Wraps a value in a `Just` container.
