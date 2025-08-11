@@ -124,10 +124,12 @@ function map(f, list) {
  * @param acc Accumulated value, initial value
  * @param list Cons list to reduce
  * 
- * @returns New cons list with f applied to elements
+ * @returns Returns the accumulated value
  */
 function reduce(f, acc, list) {
-    return IMPLEMENT_THIS;
+    if (!list) return acc
+
+    return reduce(f, f(acc, head(list)), rest(list))
 }
 
 /**
@@ -138,5 +140,12 @@ function reduce(f, acc, list) {
  * @returns New cons list with only accepted values
  */
 function filter(f, list) {
-    return IMPLEMENT_THIS;
+    if (!list) return null
+    
+    // Skip value
+    if (!f(head(list))) return filter(f, rest(list))
+
+    // Recurse with a new conslist including the head value and filtering the
+    // rest of the list
+    return cons(head(list), filter(f, rest(list)));
 }
