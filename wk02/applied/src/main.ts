@@ -294,7 +294,7 @@ const mapNaryTree = <T, U>(
  * Represents an optional value: either a value of type `T` (`Just<T>`) or the absence of a value (`Nothing`).
  */
 type Nothing = undefined;
-type Maybe<T> = { Just: T } | Nothing;h;
+type Maybe<T> = { Just: T } | Nothing;
 
 /**
  * Wraps a value in a `Just` container.
