@@ -328,7 +328,9 @@ function addOne(maybeNum: Maybe<number>): Maybe<number> {
  * @returns A `Maybe<U>` with the transformed value, or `Nothing` if the input was `Nothing`
  */
 function mapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => U): Maybe<U> {
-    return IMPLEMENT_THIS;
+    if (m === undefined) return nothing
+
+    return just(fn(m.Just))
 }
 
 /**
@@ -340,7 +342,10 @@ function mapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => U): Maybe<U> {
  * @returns A flattened `Maybe<U>`, or `Nothing` if the input was `Nothing`
  */
 function flatMapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => Maybe<U>): Maybe<U> {
-    return IMPLEMENT_THIS;
+    if (m === undefined) return nothing
+
+    // fn returns a Maybe, no need to wrap in a just
+    return fn(m.Just)
 }
 
 /**
@@ -351,7 +356,13 @@ function flatMapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => Maybe<U>): Maybe<U> {
  * @returns `Just<number>` if parsing succeeds, otherwise `Nothing`
  */
 function parseNumber(str: string): Maybe<number> {
-    const n = parseFloat(str);
+    if (str === undefined) return nothing
+
+    // Trim it so that e.g., ' 40' can work
+    const trimmed = str.trim()
+    if (trimmed === '') return nothing
+
+    const n = parseFloat(trimmed)
     return isNaN(n) ? nothing : just(n);
 }
 
@@ -385,7 +396,12 @@ function reciprocal(n: number): number {
  * @param input - The input string to transform
  * @returns `Just<number>` if all operations succeed, otherwise `Nothing`
  */
-const chainFunctions = (input: string): Maybe<number> => IMPLEMENT_THIS;
+const chainFunctions = (input: string): Maybe<number> => {
+    return mapMaybe(
+        flatMapMaybe(parseNumber(input), nonZero),
+        reciprocal
+    )
+};
 
 export {
     anObject,
