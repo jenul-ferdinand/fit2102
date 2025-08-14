@@ -247,7 +247,7 @@ const naryTreeExample = naryTree(1, [
 ]);
 
 /**
- * Computes the maximum depth of an N-ary tree.
+ * * Computes the maximum depth of an N-ary tree.
  *
  * The depth of a tree is the length of the longest path from the root node to any leaf.
  *
@@ -267,7 +267,7 @@ const depthNaryTree = <T>(tree: NaryTree<T>): number => {
 };
 
 /**
- * Applies a function to each node's data in an N-ary tree, producing a new tree of the same shape.
+ * * Applies a function to each node's data in an N-ary tree, producing a new tree of the same shape.
  *
  * @param tree - The tree to map over
  * @param fn - A function to apply to each data value
@@ -286,7 +286,7 @@ const mapNaryTree = <T, U>(
 }
 
 /*****************************************************************
- * Exercise 5 — Maybe Types
+ * & Exercise 5 — Maybe Types
  *
  *****************************************************************/
 
@@ -320,8 +320,8 @@ function addOne(maybeNum: Maybe<number>): Maybe<number> {
 }
 
 /**
- * Applies a function to the value inside a `Just`, producing a new `Maybe` value.
- * If the input is `Nothing`, it returns `Nothing`.
+ * * Applies a function to the value inside a `Just`, producing a new `Maybe` value.
+ * * If the input is `Nothing`, it returns `Nothing`.
  *
  * @param m - The `Maybe` container
  * @param fn - Function to apply to the contained value if present
@@ -334,8 +334,8 @@ function mapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => U): Maybe<U> {
 }
 
 /**
- * Applies a function that returns a `Maybe` to the value inside a `Just`, flattening the result.
- * If the input is `Nothing`, it returns `Nothing`.
+ * * Applies a function that returns a `Maybe` to the value inside a `Just`, flattening the result.
+ * * If the input is `Nothing`, it returns `Nothing`.
  *
  * @param m - The `Maybe` container
  * @param fn - Function to apply to the contained value if present, returning another `Maybe`
@@ -388,17 +388,25 @@ function reciprocal(n: number): number {
 }
 
 /**
- * Applies a chain of `Maybe`-aware computations to a string:
- * 1. Parses the string to a number
- * 2. Validates that the number is not zero
- * 3. Computes the reciprocal
+ * * Applies a chain of `Maybe`-aware computations to a string:
+ * * 1. Parses the string to a number
+ * * 2. Validates that the number is not zero
+ * * 3. Computes the reciprocal
  *
  * @param input - The input string to transform
  * @returns `Just<number>` if all operations succeed, otherwise `Nothing`
  */
 const chainFunctions = (input: string): Maybe<number> => {
+    
     return mapMaybe(
-        flatMapMaybe(parseNumber(input), nonZero),
+        // Using flatMapMaybe prevents unwanted nesting of Maybes
+        flatMapMaybe(
+            // Attempts to parse the string, gives Just(n) if valid number
+            // Otherwise nothing
+            parseNumber(input), 
+            nonZero
+        ),
+        
         reciprocal
     )
 };
