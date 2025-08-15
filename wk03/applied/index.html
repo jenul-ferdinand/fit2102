@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <style>
+            /* @import url(style.css); */
+            p.highlight {
+                color: red;
+            }
+
+            svg {
+                background-color: #ccc;
+            }
+        </style>
+
+        <meta charset="utf-8" />
+        <title>Week 3 Exercises</title>
+    </head>
+    <body>
+        <div class="sliderWrapper">
+            <div><p>Dark Mode&nbsp;&nbsp;</p></div>
+            <label class="switch">
+                <input type="checkbox" id="light_vs_dark_toggle" />
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <main>
+            <div class="description">
+                <h1>Week 3 - Basic Observable Examples</h1>
+                <p>
+                    Please make sure your <code>npm</code> installation is
+                    working correctly. Refer to the <code>README</code> file for
+                    instructions on how to do this.
+                </p>
+                <p>
+                    If you run <code>npm run dev</code> and it doesn't work
+                    <strong>tell your tutor as soon as possible</strong>.
+                </p>
+                <p>
+                    Please read the Course Notes on
+                    <a
+                        href="https://tgdwyer.github.io/functionalreactiveprogramming/"
+                        >Functional Reactive Programming</a
+                    >
+                    before attempting these exercises.
+                </p>
+
+                <h2 class="heading">Exercise 1 - Observables introduction</h2>
+                <p>
+                    Simple demonstration of mouse events changing html text to
+                    show the coordinates of the mouse pointer. The text should
+                    turn red if x>400.
+                </p>
+                <div>
+                    <span>Using event listeners:</span>
+                    <p id="pos_event">0,0</p>
+                </div>
+                <div>
+                    <span>Using Observable:</span>
+                    <p id="pos_obs">0,0</p>
+                </div>
+
+                <h2 class="heading">Exercise 2 - An Animated Rect</h2>
+                <svg
+                    tabindex="0"
+                    id="animatedRect"
+                    width="600"
+                    height="600"
+                ></svg>
+
+                <h2 class="heading">Exercise 3 - A Second Animated Rect</h2>
+                <svg
+                    tabindex="0"
+                    id="animatedRect2"
+                    width="600"
+                    height="600"
+                ></svg>
+
+                <h2 class="heading">Exercise 4 - A Movable rectangle</h2>
+                <svg
+                    tabindex="0"
+                    id="moveableRect"
+                    width="600"
+                    height="600"
+                ></svg>
+            </div>
+        </main>
+
+        <div id="mocha" class="test"></div>
+        <script type="module" src="./src/main.ts"></script>
+    </body>
+</html>
