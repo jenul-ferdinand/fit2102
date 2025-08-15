@@ -221,11 +221,11 @@ const mapBinaryTree = <T, U>(
 
 type NaryTree<T> = Readonly<{
     data: T;
-    children: NaryTree<T>[];
+    children: ReadonlyArray<NaryTree<T>>;
 }>;
 
 /**
- * Creates an N-ary tree node.
+ * * Creates an N-ary tree node.
  *
  * @param data - The value at this node
  * @param children - An array of child NaryTree nodes
@@ -234,7 +234,7 @@ type NaryTree<T> = Readonly<{
  */
 const naryTree = <T>(
     data: T, 
-    children: NaryTree<T>[] = []
+    children: ReadonlyArray<NaryTree<T>> = []
 ): NaryTree<T> => ({
     data,
     children
@@ -406,7 +406,6 @@ const chainFunctions = (input: string): Maybe<number> => {
             parseNumber(input), 
             nonZero
         ),
-        
         reciprocal
     )
 };
